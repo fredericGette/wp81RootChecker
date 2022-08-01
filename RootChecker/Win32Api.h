@@ -1,5 +1,8 @@
 #pragma once
 
+// See https://github.com/tandasat/SecRuntimeSample/blob/master/SecRuntimeSampleNative/Win32Api.h
+
+
 typedef ACCESS_MASK REGSAM;
 
 extern "C" {
