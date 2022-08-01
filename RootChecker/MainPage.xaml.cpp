@@ -41,7 +41,6 @@ void MainPage::OnNavigatedTo(NavigationEventArgs^ e)
 	boolean result = check();
 	if (result) {
 		TextTest01->Text += L"Success!\n\nRoot Access: Enabled";
-		OutputDebugStringA("Root ok\n");
 	}
 	else {
 		TextTest01->Text += L"Failed!\n\nRoot Access: Disabled";
