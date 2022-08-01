@@ -9,6 +9,9 @@ extern "C" {
 	LONG WINAPI RegOpenKeyExA(HKEY, LPCSTR, DWORD, REGSAM, PHKEY);
 	LONG WINAPI RegQueryValueExA(HKEY, LPCSTR, PDWORD, PDWORD, LPBYTE, PDWORD);
 	LONG WINAPI RegCloseKey(HKEY);
+
+	WINBASEAPI HANDLE WINAPI FindFirstFileW(LPCWSTR lpFileName, LPWIN32_FIND_DATAW lpFindFileData);
+	WINBASEAPI BOOL WINAPI FindNextFileW(HANDLE hFindFile, LPWIN32_FIND_DATAW lpFindFileData);
 }
 
 #define WIN32API_TOSTRING(x) #x
@@ -47,12 +50,16 @@ public:
 	WIN32API_DEFINE_PROC(RegOpenKeyExA);
 	WIN32API_DEFINE_PROC(RegQueryValueExA);
 	WIN32API_DEFINE_PROC(RegCloseKey);
+	WIN32API_DEFINE_PROC(FindFirstFileW);
+	WIN32API_DEFINE_PROC(FindNextFileW);
 
 	Win32Api()
 		: m_Kernelbase(GetKernelBase()),
 		WIN32API_INIT_PROC(m_Kernelbase, RegOpenKeyExA),
 		WIN32API_INIT_PROC(m_Kernelbase, RegQueryValueExA),
-		WIN32API_INIT_PROC(m_Kernelbase, RegCloseKey)
+		WIN32API_INIT_PROC(m_Kernelbase, RegCloseKey),
+		WIN32API_INIT_PROC(m_Kernelbase, FindFirstFileW),
+		WIN32API_INIT_PROC(m_Kernelbase, FindNextFileW)
 	{};
 
 };

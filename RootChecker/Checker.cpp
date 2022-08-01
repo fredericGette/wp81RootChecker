@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Registry.h"
 #include "Checker.h"
+#include "Win32Api.h"
 
 void debug(const char* format, ...)
 {
@@ -15,9 +16,9 @@ void debug(const char* format, ...)
 	va_end(args);
 }
 
-boolean check()
+boolean check01()
 {
-	debug("Checking...\n");
+	debug("Checking registry access...\n");
 
 	HKEY HKEY_LOCAL_MACHINE = (HKEY)2147483650U;
 
@@ -31,6 +32,42 @@ boolean check()
 	}
 	DWORD valueWord = *value;
 	debug("Value %d\n", valueWord);
+
+	return true;
+}
+
+boolean check02()
+{
+	debug("Checking filesystem access...\n");
+
+	Win32Api win32Api;
+
+	WIN32_FIND_DATAW win32_FIND_DATA = {};
+	HANDLE handle = win32Api.FindFirstFileW(L"C:\\Windows\\System32\\config\\*", (LPWIN32_FIND_DATAW)&win32_FIND_DATA);
+	if (handle == INVALID_HANDLE_VALUE)
+	{
+		debug("Failed to query folder. Error: %d\n", GetLastError());
+		return false;
+	}
+
+	do
+	{
+		if (win32_FIND_DATA.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			OutputDebugString(L"Directory name:");
+		}
+		else
+		{
+			OutputDebugString(L"File name:");
+		}
+		OutputDebugString(win32_FIND_DATA.cFileName);
+		OutputDebugString(L"\n");
+	} while (win32Api.FindNextFileW(handle, (LPWIN32_FIND_DATAW)&win32_FIND_DATA));
+	if (GetLastError() != ERROR_NO_MORE_FILES)
+	{
+		debug("Failed to query folder. Error: %d\n", GetLastError());
+		return false;
+	}
 
 	return true;
 }

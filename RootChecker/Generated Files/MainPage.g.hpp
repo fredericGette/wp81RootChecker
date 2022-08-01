@@ -22,8 +22,8 @@ void ::RootChecker::MainPage::InitializeComponent()
     // Call LoadComponent on ms-appx:///MainPage.xaml
     ::Windows::UI::Xaml::Application::LoadComponent(this, ref new ::Windows::Foundation::Uri(L"ms-appx:///MainPage.xaml"), ::Windows::UI::Xaml::Controls::Primitives::ComponentResourceLocation::Application);
 
-    // Get the TextBlock named 'TextTest01'
-    TextTest01 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(static_cast<Windows::UI::Xaml::IFrameworkElement^>(this)->FindName(L"TextTest01"));
+    // Get the TextBlock named 'TextTest'
+    TextTest = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(static_cast<Windows::UI::Xaml::IFrameworkElement^>(this)->FindName(L"TextTest"));
 }
 
 void ::RootChecker::MainPage::Connect(int connectionId, Platform::Object^ target)

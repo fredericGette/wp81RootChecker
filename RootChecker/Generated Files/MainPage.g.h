@@ -30,7 +30,7 @@ namespace RootChecker
     private:
         bool _contentLoaded;
     
-        private: ::Windows::UI::Xaml::Controls::TextBlock^ TextTest01;
+        private: ::Windows::UI::Xaml::Controls::TextBlock^ TextTest;
     };
 }
 

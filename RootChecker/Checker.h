@@ -1,3 +1,4 @@
 #pragma once
 
-boolean check();
+boolean check01();
+boolean check02();

@@ -36,13 +36,24 @@ void MainPage::OnNavigatedTo(NavigationEventArgs^ e)
 {
 	(void) e;	// Unused parameter
 
-	TextTest01->Text = L"Reading: HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\PhoneProvisioner\\ColdBootDone\n\n";
+	TextTest->Text = L"Reading: HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\PhoneProvisioner\\ColdBootDone\n\n";
 
-	boolean result = check();
+	boolean result = check01();
 	if (result) {
-		TextTest01->Text += L"Success!\n\nRoot Access: Enabled";
+		TextTest->Text += L"Success!\n\n";
 	}
 	else {
-		TextTest01->Text += L"Failed!\n\nRoot Access: Disabled";
+		TextTest->Text += L"Failed!\n\n";
 	}
+
+	TextTest->Text += L"Reading: C:\\Windows\\System32\\config\\*\n\n";
+
+	result &= check02();
+	if (result) {
+		TextTest->Text += L"Success!\n\n";
+	}
+	else {
+		TextTest->Text += L"Failed!\n\n";
+	}
+
 }
