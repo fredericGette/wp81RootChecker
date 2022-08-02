@@ -37,7 +37,6 @@ void MainPage::OnNavigatedTo(NavigationEventArgs^ e)
 	(void) e;	// Unused parameter
 
 	TextTest->Text = L"Reading: HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\PhoneProvisioner\\ColdBootDone\n\n";
-
 	boolean result = check01();
 	if (result) {
 		TextTest->Text += L"Success!\n\n";
@@ -47,7 +46,6 @@ void MainPage::OnNavigatedTo(NavigationEventArgs^ e)
 	}
 
 	TextTest->Text += L"Reading: C:\\Windows\\System32\\config\\*\n\n";
-
 	result &= check02();
 	if (result) {
 		TextTest->Text += L"Success!\n\n";
@@ -56,4 +54,12 @@ void MainPage::OnNavigatedTo(NavigationEventArgs^ e)
 		TextTest->Text += L"Failed!\n\n";
 	}
 
+	TextTest->Text += L"Executing: C:\\WINDOWS\\SYSTEM32\\XBFGENERATOR.EXE\n\n";
+	result &= check03();
+	if (result) {
+		TextTest->Text += L"Success!\n\n";
+	}
+	else {
+		TextTest->Text += L"Failed!\n\n";
+	}
 }

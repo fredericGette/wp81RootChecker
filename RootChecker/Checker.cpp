@@ -68,6 +68,27 @@ boolean check02()
 		debug("Failed to query folder. Error: %d\n", GetLastError());
 		return false;
 	}
+	win32Api.FindClose(handle);
+
+	return true;
+}
+
+boolean check03()
+{
+	debug("Checking process creation...\n");
+
+	Win32Api win32Api;
+
+	PROCESS_INFORMATION process_INFORMATION = {};
+	STARTUPINFOA startupinfo = {};
+	ZeroMemory(&startupinfo, sizeof(startupinfo));
+	if (!win32Api.CreateProcessA("C:\\WINDOWS\\SYSTEM32\\XBFGENERATOR.EXE", NULL, NULL, NULL, false, NORMAL_PRIORITY_CLASS, NULL, NULL, &startupinfo, &process_INFORMATION))
+	{
+		debug("CreateProcess failed. Error: %d\n", GetLastError());
+		return false;
+	}
+	win32Api.CloseHandle(process_INFORMATION.hProcess);
+	win32Api.CloseHandle(process_INFORMATION.hThread);
 
 	return true;
 }
