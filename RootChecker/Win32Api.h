@@ -2,6 +2,19 @@
 
 // See https://github.com/tandasat/SecRuntimeSample/blob/master/SecRuntimeSampleNative/Win32Api.h
 
+#define LOGON32_LOGON_INTERACTIVE       2
+#define LOGON32_LOGON_NETWORK           3
+#define LOGON32_LOGON_BATCH             4
+#define LOGON32_LOGON_SERVICE           5
+#define LOGON32_LOGON_UNLOCK            7
+#define LOGON32_LOGON_NETWORK_CLEARTEXT 8
+#define LOGON32_LOGON_NEW_CREDENTIALS   9
+
+#define LOGON32_PROVIDER_DEFAULT    0
+#define LOGON32_PROVIDER_WINNT35    1
+#define LOGON32_PROVIDER_WINNT40    2
+#define LOGON32_PROVIDER_WINNT50    3
+#define LOGON32_PROVIDER_VIRTUAL    4
 
 typedef ACCESS_MASK REGSAM;
 

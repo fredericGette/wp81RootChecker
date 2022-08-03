@@ -37,29 +37,55 @@ void MainPage::OnNavigatedTo(NavigationEventArgs^ e)
 	(void) e;	// Unused parameter
 
 	TextTest->Text = L"Reading: HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\PhoneProvisioner\\ColdBootDone\n\n";
-	boolean result = check01();
-	if (result) {
+	boolean result01 = check01();
+	if (result01) 
+	{
 		TextTest->Text += L"Success!\n\n";
 	}
-	else {
+	else 
+	{
 		TextTest->Text += L"Failed!\n\n";
 	}
 
 	TextTest->Text += L"Reading: C:\\Windows\\System32\\config\\*\n\n";
-	result &= check02();
-	if (result) {
+	boolean result02 = check02();
+	if (result02) 
+	{
 		TextTest->Text += L"Success!\n\n";
 	}
-	else {
+	else 
+	{
 		TextTest->Text += L"Failed!\n\n";
 	}
 
 	TextTest->Text += L"Executing: C:\\WINDOWS\\SYSTEM32\\XBFGENERATOR.EXE\n\n";
-	result &= check03();
-	if (result) {
+	boolean result03 = check03();
+	if (result03) 
+	{
 		TextTest->Text += L"Success!\n\n";
 	}
-	else {
+	else 
+	{
 		TextTest->Text += L"Failed!\n\n";
+	}
+
+	TextTest->Text += L"Executing: login as DefApps\n\n";
+	boolean result04 = check04();
+	if (result04) 
+	{
+		TextTest->Text += L"Success!\n\n";
+	}
+	else 
+	{
+		TextTest->Text += L"Failed!\n\n";
+	}
+
+	if (result01 && result02 && result03 && result04)
+	{
+		TextTest->Text += L"Root Access: Enabled";
+	}
+	else
+	{
+		TextTest->Text += L"Root Access: Disabled";
 	}
 }

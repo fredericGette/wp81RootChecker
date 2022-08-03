@@ -92,3 +92,24 @@ boolean check03()
 
 	return true;
 }
+
+boolean check04()
+{
+	debug("Checking login...\n");
+
+	Win32Api win32Api;
+
+	HANDLE hToken = {};
+	SID logonSid = {};
+	PSID pLogonSid = &logonSid;
+	PVOID pProfileBuffer = {};
+	DWORD profileLength = 0;
+	QUOTA_LIMITS quotaLimits = {};
+	if (!win32Api.LogonUserExExW(L"DefApps", L"", L"", LOGON32_LOGON_INTERACTIVE, LOGON32_PROVIDER_DEFAULT, NULL, &hToken, &pLogonSid, &pProfileBuffer, &profileLength, &quotaLimits))
+	{
+		debug("login failed. Error: %d\n", GetLastError());
+		return false;
+	}
+
+	return true;
+}
